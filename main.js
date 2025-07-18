@@ -4,7 +4,9 @@ const app = Vue.createApp({
          product : {name:"socks",description:"This is green socks"},
          image : "./assets/images/socks_blue.jpg",
          url : "https://www.google.com",
-         target : "_blank"
+         target : "_blank",
+         inStock : false,
+         onSale : true
      }
  }
 });
