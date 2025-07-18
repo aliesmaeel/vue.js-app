@@ -6,7 +6,10 @@ const app = Vue.createApp({
          url : "https://www.google.com",
          target : "_blank",
          inStock : false,
-         onSale : true
+         onSale : true,
+         details : ["50% cotton" , "30% wool " , "20% polyester"],
+         variants : [{id:22 , color : "green"},{id:33 , color : "white"}],
+         sizes: ['big','medium','small']
      }
  }
 });
