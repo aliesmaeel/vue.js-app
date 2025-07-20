@@ -3,7 +3,11 @@ app.component('product-display',{
 premium: {
     type:Boolean,
     required:true
-}
+},
+     cartlen: {
+     type:Number,
+     required: true
+     }
  },
  template : `  <div class="product-display">
         <div class="product-container">
@@ -60,15 +64,15 @@ premium: {
     },
     methods: {
         addToCart(){
-            this.cart ++;
+            this.$emit('add-to-cart',this.variants[this.selectedVariant].id);
         },
         updateVariant(index){
             this.selectedVariant=index;
             this.onSale=this.variants[index].onSale
         },
         removeFromCart(){
-            if (this.cart > 0)
-                this.cart--;
+            if (this.cartlen > 0)
+                this.$emit('remove-from-cart',this.variants[this.selectedVariant].id);
         }
     },
     computed:{
