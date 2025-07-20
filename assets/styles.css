@@ -208,3 +208,6 @@ ul {
 .product-flex ul {
   justify-content: space-between;
 }
+.product-title{
+  height: 50px;
+}

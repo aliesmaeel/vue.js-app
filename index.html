@@ -19,10 +19,10 @@
             <a :href="url" :target="target" >More images</a>
           </div>
           <div class="product-info">
-            <h1>{{product.name}}</h1>
+            <h1 class="product-title">{{title}}</h1>
             <div>{{product.description}}</div>
-            <p v-if="inStock">in Stock</p>
             <div class="product-flex">
+              <h3 v-if="inStock">in Stock</h3>
               <h3 v-else>Out Of Stock</h3>
               <h3 v-if="onSale">On Sale</h3>
             </div>
@@ -31,8 +31,8 @@
                 <li v-for="detail in details">{{detail}}</li>
               </ul>
               <ul>
-                <li v-for="variant in variants" :key="variant.id"
-                    @mouseover="updateImage(variant.image)" class="color-circle"
+                <li v-for="(variant,index) in variants" :key="variant.id"
+                    @mouseover="updateVariant(index)" class="color-circle"
                  :style="{backgroundColor:variant.color}"></li>
               </ul>
               <ul>

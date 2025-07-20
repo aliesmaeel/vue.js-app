@@ -3,15 +3,16 @@ const app = Vue.createApp({
      return {
          cart : 0,
          product : {name:"socks",description:"This is green socks"},
-         image : "./assets/images/socks_blue.jpg",
+         brand : "vue.js",
          url : "https://www.google.com",
          target : "_blank",
-         inStock : false,
-         onSale : true,
+         selectedVariant: 0,
+         onSale : false,
          details : ["50% cotton" , "30% wool " , "20% polyester"],
          variants : [
-             {id:22 , color : "green" , image : "./assets/images/socks_green.jpg"},
-             {id:33 , color : "blue" , image: './assets/images/socks_blue.jpg'}
+             {id:22 , color : "green" , image : "./assets/images/socks_green.jpg",quantity :20 , onSale :true},
+             {id:33 , color : "blue" , image: './assets/images/socks_blue.jpg', quantity: 0 , onSale: false},
+             {id:54 , color : "red" , image: './assets/images/socks_red.jpg', quantity: 3 , onSale: false}
          ],
          sizes: ['big','medium','small'],
 
@@ -21,12 +22,27 @@ const app = Vue.createApp({
         addToCart(){
             this.cart ++;
         },
-        updateImage(image){
-            this.image=image;
+        updateVariant(index){
+         this.selectedVariant=index;
+         this.onSale=this.variants[index].onSale
         },
         removeFromCart(){
             if (this.cart > 0)
                 this.cart--;
         }
+    },
+    computed:{
+     title(){
+         if(this.onSale === true){
+             return this.product.name + ' ' + this.brand;
+         }
+     },
+     image() {
+        return  this.variants[this.selectedVariant].image
+        },
+        inStock(){
+          return this.variants[this.selectedVariant].quantity > 0;
+        }
+
     }
 });
