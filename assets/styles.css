@@ -211,3 +211,6 @@ ul {
 .product-title{
   height: 50px;
 }
+input[type='checkbox']{
+height: 20px;
+}

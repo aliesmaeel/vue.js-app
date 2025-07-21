@@ -41,6 +41,8 @@ premium: {
                >Add To Cart</button>
               <button class="button" @click="removeFromCart">Remove form Cart</button>
             </div>
+            <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+            <review-form @review-submitted="addReview"></review-form>
           </div>
         </div>
       </div>`,
@@ -59,6 +61,7 @@ premium: {
                 {id:54 , color : "red" , image: './assets/images/socks_red.jpg', quantity: 3 , onSale: false}
             ],
             sizes: ['big','medium','small'],
+            reviews : []
 
         }
     },
@@ -73,6 +76,9 @@ premium: {
         removeFromCart(){
             if (this.cartlen > 0)
                 this.$emit('remove-from-cart',this.variants[this.selectedVariant].id);
+        },
+        addReview(review){
+            this.reviews.push(review)
         }
     },
     computed:{
